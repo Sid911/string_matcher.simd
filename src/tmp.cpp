@@ -68,7 +68,9 @@ void file_test() {
   u8simd_str file = readAlignedFile(filename);
   const int n     = 1000;
   auto start      = std::chrono::high_resolution_clock::now();
-  for (auto x = 0; x < n; x++) { mark_utf8_bytes2(file); }
+  for (auto x = 0; x < n; x++) {  // Comment
+    mark_utf8_bytes2(file);
+  }
   auto end = std::chrono::high_resolution_clock::now();
 
   std::chrono::duration<double, std::milli> duration = (end - start);

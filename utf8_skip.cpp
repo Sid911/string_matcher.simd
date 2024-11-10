@@ -2,7 +2,6 @@
 
 alignas(stdx::memory_alignment_v<u8mask>) static constexpr std::array<bool, u8mask::size() * 2> mem{ true, true, true };
 
-
 std::vector<u8mask> mark_utf8_bytes2(u8simd_str &data, uint32_t offset) {
   static u8mask mask_b1{ &mem[2], stdx::element_aligned };
   static u8mask mask_b2{ &mem[1], stdx::element_aligned };
@@ -39,9 +38,9 @@ std::vector<u8mask> mark_utf8_bytes2(u8simd_str &data, uint32_t offset) {
     masks[i] = mask;
 
     // Also I should be able to remove this shift just by reversing the overflow
-    overflow3 = shiftElementLeftCrossLane<u8simd::size() - 3>(bytes);
-    overflow2 = shiftElementLeftCrossLane<u8simd::size() - 2>(bytes);
-    overflow1 = shiftElementLeftCrossLane<u8simd::size() - 1>(bytes);
+    overflow3 = shiftElementLeft<u8simd::size() - 3>(bytes);
+    overflow2 = shiftElementLeft<u8simd::size() - 2>(bytes);
+    overflow1 = shiftElementLeft<u8simd::size() - 1>(bytes);
   }
   return masks;
 }
@@ -86,5 +85,3 @@ std::vector<u8mask> mark_utf8_bytes(const u8simd_str &data) {
 
   return std::move(masks);
 }
-
-

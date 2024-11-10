@@ -7,9 +7,7 @@ set_runtimes("stdc++_static")
 
 target("utf8_skip")
   set_kind("static")
-  if (is_mode("release", "profile", "releasedbg")) then
-    add_vectorexts("avx2")
-  end
+  add_vectorexts("avx2")
   add_includedirs("$(projectdir)/include", { public = true })
   add_files("src/utf8_skip.cpp")
 target_end()
